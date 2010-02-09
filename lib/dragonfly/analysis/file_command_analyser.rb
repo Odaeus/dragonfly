@@ -13,7 +13,7 @@ module Dragonfly
           `#{file_command} -b --mime '#{temp_object.path}'`
         else
           IO.popen("#{file_command} -b --mime -", 'r+') do |io|
-            io.write temp_object.data
+            io.write temp_object.data[0,255]
             io.close_write
             io.read
           end
